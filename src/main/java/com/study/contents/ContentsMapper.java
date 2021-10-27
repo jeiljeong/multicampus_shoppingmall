@@ -3,6 +3,9 @@ package com.study.contents;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
 public interface ContentsMapper {
 
 	int create(ContentsDTO dto);
