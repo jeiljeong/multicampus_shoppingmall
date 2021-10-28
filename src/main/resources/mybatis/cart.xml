@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.cart.CartMapper">
+	<insert id="create" parameterType="com.study.cart.CartDTO">
+		insert into cart(cartno,id,contentsno,quantity,total)
+		values((select nvl(max(cartno),0)+1 from cart),#{id},#{contentsno}, #{quantity}, #{price * quantity});
+	</insert>
+</mapper>
