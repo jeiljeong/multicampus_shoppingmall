@@ -1,7 +1,6 @@
  # Shopping mall
 
- ### Main page
- <img src="./markdown/Main_page.png" width="600" height="350"> 
+ ### Main page 
 ![이미지](./markdown/Main_page.png "main_page")
 
  ### Login Page
