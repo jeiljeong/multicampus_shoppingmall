@@ -1,10 +1,20 @@
 CREATE TABLE cart (
-        cartno  NUMBER(10)      NOT NULL PRIMARY KEY,
-        id      VARCHAR2(10)    NULL,
+        cartno      NUMBER(10)      NOT NULL PRIMARY KEY,
+        id          VARCHAR2(20)    NULL,
+        contentsno  NUMBER(10)      NOT NULL,
+        quantity    NUMBER(10)      DEFAULT 1 NOT NULL,
+        total       NUMBER(10)      NOT NULL,
             FOREIGN KEY (ID) REFERENCES member (ID)
 );
 
-drop table oder CASCADE CONSTRAINTS;
+--정보 입력
+insert into cart(cartno,id,contentsno,quantity,total)
+values((select nvl(max(cartno),0)+1 from cart),'user1', 21, 1, 5000);
+
+
+drop table cart;
+
+drop table orders;
 
 /**********************************/
 /* Table Name: 주문 */

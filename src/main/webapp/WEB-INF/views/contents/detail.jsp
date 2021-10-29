@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
 function checkCnt(f) {
-	if(parseInt(f.ordercnt.value) < 1 || 
+	if(parseInt(f.ordercnt.value) < 1 ||
 			parseInt(f.ordercnt.value) > ${dto.stock}) {
 		alert("재고 수량보다 주문 수량이 많습니다.");
 		f.ordercnt.value="";
@@ -19,7 +19,7 @@ function checkCnt(f) {
 }
 
 $(document).ready(function(){
-    $("#ordercnt").on("input", function(){
+    $("#quantity").on("input", function(){
       $("#calctotal").text((parseInt($(this).val()) ? parseInt($(this).val()) : 0) * ${dto.price});
     });
 });
@@ -49,22 +49,30 @@ $(document).ready(function(){
 					<div class="panel-heading">가격</div>
 					<div class="panel-body">${dto.price}</div>
 				</div>
-				<form class="form-horizontal" action="/contents/create"
+				<form class="form-horizontal" action="/cart/create"
 					method="post" onsubmit="return checkCnt(this)">
-					<label for="ordercnt">주문 수량:</label> <input type="text"
-						class="form-control" id="ordercnt" placeholder="수량을 입력하세요"
-						name="ordercnt"> <br>
+					<label for="quantity">주문 수량:</label> <input type="text"
+						class="form-control" id="quantity" placeholder="수량을 입력하세요"
+						name="quantity"> <br>
 					<div class="panel panel-warning">
 						<div class="panel-heading">결제 금액</div>
 						<div class="panel-body" id="calctotal" style="height:110px;display:table-cell;
 						vertical-align:middle;"></div>
 					</div>
 					<button type="submit" class="btn btn-danger">즉시 구매하기</button>
-					<button type="button" class="btn btn-success" onclick="location.href='${root}/admin/list'">장바구니 담기</button>
+					<button id="addCartBtn" type="button" class="btn btn-success">장바구니 담기</button>
 					<button type="button" class="btn btn-default" onclick="location.href='/contents/mainlist/${dto.cateno}'">목록으로 이동</button>
 				</form>
 			</div>
 		</div>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/cart.js"></script>
+		<script type="text/javascript">
+			var contentsno=${contentsno};
+			var quantity=$("#quantity").val();
+			console.log(contentsno);
+			console.log(quantity);
+		</script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/cartprocess.js"></script>
 	</div>
 </body>
 </html>
